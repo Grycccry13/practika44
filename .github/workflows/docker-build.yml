@@ -1,21 +1,22 @@
-name: Docker Build and Run
+   name: Docker Build and Run
 
-on:
-  push:
-    branches:
-      - main
+   on:
+     push:
+       branches:
+         - main
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-    - name: Set up Docker
-      uses: docker://docker:latest
-    - name: Build Docker image
-      run: docker build -t mynginx .
-    - name: Run Docker container
-      run: docker run -d --name mynginx -p 8080:80 mynginx
-    - name: Test Docker container
-      run: curl http://localhost:8080
+   jobs:
+     build:
+       runs-on: ubuntu-latest
+       steps:
+       - name: Checkout code
+         uses: actions/checkout@v3 # Обновите до версии 3
+       - name: Set up Docker
+         uses: docker://docker:latest
+       - name: Build Docker image
+         run: docker build -t mynginx .
+       - name: Run Docker container
+         run: docker run -d --name mynginx -p 8080:80 mynginx
+       - name: Test Docker container
+         run: curl http://localhost:8080
+   
